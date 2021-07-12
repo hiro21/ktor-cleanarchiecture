@@ -1,5 +1,7 @@
 package com.example
 
+import com.example.usecase.HelloInteractor
+import com.example.usecase.HelloUsecase
 import com.example.web.HelloController
 import com.example.web.HelloControllerImpl
 import io.ktor.application.*
@@ -37,6 +39,7 @@ fun Application.module(testing: Boolean = false) {
 
 // DIの設定
 val helloModule = module {
-    single<HelloController> { HelloControllerImpl() }
+    single<HelloController> { HelloControllerImpl(get()) }
+    single<HelloUsecase> { HelloInteractor() }
 }
 
